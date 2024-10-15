@@ -2,7 +2,6 @@ package com.edw.model;
 
 import org.infinispan.api.annotations.indexing.Basic;
 import org.infinispan.api.annotations.indexing.Indexed;
-import org.infinispan.protostream.annotations.ProtoFactory;
 import org.infinispan.protostream.annotations.ProtoField;
 
 import javax.persistence.Entity;
@@ -22,6 +21,7 @@ import java.io.Serializable;
 @Table(name="T_USER")
 @Indexed
 public class User implements Serializable {
+
     @Id
     private String name;
 
@@ -32,14 +32,13 @@ public class User implements Serializable {
     public User() {
     }
 
-    @ProtoFactory
     public User(String name, Integer age, String address) {
         this.name = name;
         this.age = age;
         this.address = address;
     }
 
-    @ProtoField(1)
+    @ProtoField(number = 1, required = true)
     @Basic(sortable = true)
     public String getName() {
         return name;
@@ -49,7 +48,7 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    @ProtoField(2)
+    @ProtoField(number = 2)
     @Basic(sortable = true)
     public Integer getAge() {
         return age;
@@ -59,7 +58,7 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    @ProtoField(3)
+    @ProtoField(number = 3)
     @Basic
     public String getAddress() {
         return address;
