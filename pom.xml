@@ -13,6 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- infinispan client version is 14, while infinispan server version is 15 -->
         <version.infinispan>14.0.31.Final</version.infinispan>
         <version.spring.boot>2.7.8</version.spring.boot>
 
