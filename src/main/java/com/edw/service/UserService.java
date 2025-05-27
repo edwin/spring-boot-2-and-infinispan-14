@@ -1,5 +1,6 @@
 package com.edw.service;
 
+import com.edw.model.GenMdAccountEntity;
 import com.edw.model.User;
 import com.edw.repository.UserRepository;
 import org.infinispan.client.hotrod.RemoteCache;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * <pre>
@@ -65,5 +68,28 @@ public class UserService {
         final RemoteCache cache = remoteCacheManager.getCache("user");
         userRepository.findAll()
                 .forEach(user -> cache.put(user.getName(), user));
+    }
+
+    public void generate() {
+        final RemoteCache cache = remoteCacheManager.getCache("GEN_MD_ACCOUNT");
+        for (int i = 0; i < 10000; i ++) {
+            cache.put(UUID.randomUUID().toString(), new GenMdAccountEntity(new Random().nextLong(), ""+new Random().nextLong(), 0l, "111",
+                    "A", "00", "aaa", "2222",
+                    "A", "00", "aaa", "2222",
+                    null, "00", null, "2222",
+                    null, "00", null, "2222"
+            ));
+        }
+    }
+
+    public void get() {
+        final RemoteCache cache = remoteCacheManager.getCache("GEN_MD_ACCOUNT");
+        for (int i = 0; i < 10000; i ++) {
+            QueryFactory queryFactory = Search.getQueryFactory(cache);
+            Query<GenMdAccountEntity> query = queryFactory.create("from default.GenMdAccountEntity where ACCOUNT_CODE = \"7592791042774889696\"");
+
+            Long timestamp = System.currentTimeMillis();
+            System.out.println("hasil --> "+ query.execute().list()+" ~ " + (System.currentTimeMillis() - timestamp));
+        }
     }
 }

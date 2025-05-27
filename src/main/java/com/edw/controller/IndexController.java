@@ -54,4 +54,17 @@ public class IndexController {
         userService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping(path = "/generate")
+    public ResponseEntity generate() {
+        userService.generate();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+    @GetMapping(path = "/get")
+    public ResponseEntity get() {
+        userService.get();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

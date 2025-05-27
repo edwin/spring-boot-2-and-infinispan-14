@@ -1,6 +1,6 @@
 package com.edw.config;
 
-import com.edw.model.User;
+import com.edw.model.GenMdAccountEntity;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.marshall.MarshallerUtil;
@@ -37,10 +37,10 @@ public class InfinispanInitializer implements CommandLineRunner {
         String msgSchemaFile = null;
         try {
             ProtoSchemaBuilder protoSchemaBuilder = new ProtoSchemaBuilder();
-            msgSchemaFile = protoSchemaBuilder.fileName("user.proto").packageName("user").addClass(User.class).build(ctx);
-            protoMetadataCache.put("user.proto", msgSchemaFile);
+            msgSchemaFile = protoSchemaBuilder.fileName("GenMdAccountEntity.proto").packageName("default").addClass(GenMdAccountEntity.class).build(ctx);
+            protoMetadataCache.put("GenMdAccountEntity.proto", msgSchemaFile);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to build protobuf definition from 'User class'", e);
+            throw new RuntimeException("Failed to build protobuf definition from 'GenMdAccountEntity class'", e);
         }
 
         String errors = protoMetadataCache.get(ProtobufMetadataManagerConstants.ERRORS_KEY_SUFFIX);
