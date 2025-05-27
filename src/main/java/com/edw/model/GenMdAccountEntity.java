@@ -279,4 +279,30 @@ public class GenMdAccountEntity {
 
     public GenMdAccountEntity() {
     }
+
+    @Override
+    public String toString() {
+        return "GenMdAccountEntity{" +
+                "accountId=" + accountId +
+                ", accountCode='" + accountCode + '\'' +
+                ", memberId=" + memberId +
+                ", clientCode='" + clientCode + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", checkDigit='" + checkDigit + '\'' +
+                ", accountName='" + accountName + '\'' +
+                ", accountPosition='" + accountPosition + '\'' +
+                ", correspondAcNo='" + correspondAcNo + '\'' +
+                ", blockingReason='" + blockingReason + '\'' +
+                ", accountStatus='" + accountStatus + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", createdOn=" + createdOn +
+                ", modifiedBy='" + modifiedBy + '\'' +
+                ", modifiedOn=" + modifiedOn +
+                ", checkedBy='" + checkedBy + '\'' +
+                ", checkedOn=" + checkedOn +
+                ", approvedBy='" + approvedBy + '\'' +
+                ", approvedOn=" + approvedOn +
+                ", accountBuyerSeller='" + accountBuyerSeller + '\'' +
+                '}';
+    }
 }
